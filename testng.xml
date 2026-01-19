@@ -1,9 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<suite name="AntivirusProSuite">
-    <test name="AntivirusProTests">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="AntivirusSuite">
+    <test name="ScanTests">
         <classes>
-            <class name="antiviruspro.AntivirusProTestCases"/>
+            <class name="modules.partialScan"/>
+            <class name="modules.fullScan"/>
+            <class name="modules.apkScan"/>
         </classes>
     </test>
 </suite>
+
 
