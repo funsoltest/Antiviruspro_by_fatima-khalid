@@ -76,3 +76,4 @@ public class FullScanPage extends AntivirusPro {
         } catch (Exception ignored) {}
     }
 }
+//fjkfj

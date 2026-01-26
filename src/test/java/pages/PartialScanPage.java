@@ -151,3 +151,4 @@ public class PartialScanPage extends AntivirusPro {
         } catch (Exception ignored) {}
     }
 }
+//gyfyufu
