@@ -2,9 +2,9 @@
 <suite name="AntivirusSuite">
     <test name="ScanTests">
         <classes>
-            <class name="modules.partialScan"/>
-            <class name="modules.fullScan"/>
-            <class name="modules.apkScan"/>
+            <class name="tests.PartialScanTest"/>
+            <class name="tests.FullScanTest"/>
+            <class name="tests.ApkScanTest"/>
         </classes>
     </test>
 </suite>

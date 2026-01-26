@@ -1,17 +1,14 @@
+package pages;
 
-
-package modules;
-
-import io.appium.java_client.AppiumBy;
-import org.testng.annotations.*;
 import base.AntivirusPro;
+import io.appium.java_client.AppiumBy;
 
-public class fullScan extends AntivirusPro {
+public class FullScanPage extends AntivirusPro {
 
-    // Prepare app before each test
-    @BeforeMethod
-    public void beforeMethod() {
-        // Make sure we are on scan home screen, handle popups if they appear
+   // PREPARE SCREEN
+
+    public void handlePopupsIfAny() {
+
         try {
             waitAndClick(
                     AppiumBy.id("antivirus.viruscleaner.mobilesecurity.protection.android:id/tvSkip"), 5
@@ -25,59 +22,47 @@ public class fullScan extends AntivirusPro {
         } catch (Exception ignored) {}
     }
 
-    @Test(dependsOnMethods = {"modules.partialScan.partialScanFirstTimeTest"})
-    public void fullScanSecondTest() {
+    // FULL SCAN FLOW
 
-        System.out.println("Starting Full Scan with verification");
-
-        // Scan Now
+    public void startScan() {
         waitAndClick(
                 AppiumBy.id("antivirus.viruscleaner.mobilesecurity.protection.android:id/tvScanNow"), 30
         );
+    }
 
-        //  Click Files
+    public void openFilesTab() {
         waitAndClick(
                 AppiumBy.id("antivirus.viruscleaner.mobilesecurity.protection.android:id/tvFiles"), 30
         );
+    }
 
-        // Resolve All
+    public void resolveAll() {
+
         waitAndClick(
                 AppiumBy.id("antivirus.viruscleaner.mobilesecurity.protection.android:id/tvResolveAll"), 30
         );
-         waitAndClick(
-                 AppiumBy.id("antivirus.viruscleaner.mobilesecurity.protection.android:id/tvAllowAccess"),30
-         );
+
         waitAndClick(
-                AppiumBy.id("android:id/button1"),30
+                AppiumBy.id("antivirus.viruscleaner.mobilesecurity.protection.android:id/tvAllowAccess"), 30
         );
 
-
-        //  Continue (if appears)
-        try {
-            waitAndClick(
-                    AppiumBy.id("antivirus.viruscleaner.mobilesecurity.protection.android:id/tvContinue"), 10
-            );
-        } catch (Exception ignored) {}
-
-        //  Scan Again (to re-verify deleted items)
         waitAndClick(
-                AppiumBy.id("antivirus.viruscleaner.mobilesecurity.protection.android:id/tvScanNow"), 30
+                AppiumBy.id("android:id/button1"), 30
         );
-
-        //  Final Continue (if appears)
-        try {
-            waitAndClick(
-                    AppiumBy.id("antivirus.viruscleaner.mobilesecurity.protection.android:id/tvContinue"), 10
-            );
-        } catch (Exception ignored) {}
-
-        System.out.println("Full Scan with verification completed");
     }
 
-    // Clean up after each test
-    @AfterMethod
-    public void afterMethod() {
-        // Make sure app is ready for next test
+    public void continueIfShown() {
+        try {
+            waitAndClick(
+                    AppiumBy.id("antivirus.viruscleaner.mobilesecurity.protection.android:id/tvContinue"), 10
+            );
+        } catch (Exception ignored) {}
+    }
+
+    // AFTER TEST
+
+    public void cleanupAfterTest() {
+
         try {
             waitAndClick(
                     AppiumBy.id("antivirus.viruscleaner.mobilesecurity.protection.android:id/tvContinue"), 5
@@ -91,4 +76,3 @@ public class fullScan extends AntivirusPro {
         } catch (Exception ignored) {}
     }
 }
-
