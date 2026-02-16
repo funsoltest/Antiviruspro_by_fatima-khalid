@@ -6,6 +6,8 @@ package tests;
 import org.testng.annotations.*;
 import pages.PartialScanPage;
 
+import java.net.MalformedURLException;
+
 public class PartialScanTest {
 
     PartialScanPage page;
@@ -13,12 +15,15 @@ public class PartialScanTest {
     @BeforeClass
     public void beforeClass() {
         page = new PartialScanPage();
-        page.completeIntroFlow();
-    }
+
+       page.completeIntroFlow();
+
+  }
 
     @BeforeMethod
     public void beforeEachTest() {
         page.resetAndOpenScan();
+
     }
 
     @Test

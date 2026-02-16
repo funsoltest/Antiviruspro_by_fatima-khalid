@@ -20,6 +20,7 @@ public class AntivirusPro {
 
     protected static AndroidDriver driver;
 
+
     @BeforeSuite
     public void setup() throws MalformedURLException {
 
@@ -43,6 +44,9 @@ public class AntivirusPro {
 
         // Initialize driver
         driver = new AndroidDriver(url, caps);
+
+
+
 
 
 

@@ -5,7 +5,19 @@ import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 
 public class PartialScanPage extends AntivirusPro {
+    private PermissionPage permissionPage;
 
+    public PartialScanPage() {
+        permissionPage = new PermissionPage();
+    }
+
+    // Method to check and grant permission
+    public void checkPermissionBeforeScan() {
+        if (permissionPage.isAllowAccessVisible()) {
+            System.out.println("Granting All Files Access...");
+            permissionPage.grantAllFilesAccess();
+        }
+    }
     // INTRO FLOW
 
     public void completeIntroFlow() {
@@ -37,14 +49,26 @@ public class PartialScanPage extends AntivirusPro {
 
         String appId = "antivirus.viruscleaner.mobilesecurity.protection.android";
 
-        driver.terminateApp(appId);
-        driver.activateApp(appId);
+//        driver.terminateApp(appId);
+//        driver.activateApp(appId);
 
         try { Thread.sleep(3000); } catch (InterruptedException ignored) {}
+
+
+
+
 
         waitAndClick(
                 AppiumBy.id("antivirus.viruscleaner.mobilesecurity.protection.android:id/tvScanNow"), 20
         );
+        checkPermissionBeforeScan(); // ← Add this line
+
+
+
+
+
+
+
     }
 
     //DELETE APPS
