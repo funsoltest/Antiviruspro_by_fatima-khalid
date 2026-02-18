@@ -11,6 +11,12 @@ public class PartialScanPage extends AntivirusPro {
         permissionPage = new PermissionPage();
     }
 
+    public void checkNotificationAccess() {
+       if(permissionPage.isAllowAccessVisible()){
+           permissionPage.grantNotificationPermission();
+       }
+    }
+
     // Method to check and grant permission
     public void checkPermissionBeforeScan() {
         if (permissionPage.isAllowAccessVisible()) {
@@ -34,13 +40,13 @@ public class PartialScanPage extends AntivirusPro {
             waitAndClick(nextBtn, 30);
         }
 
-        waitAndClick(
-                AppiumBy.id("antivirus.viruscleaner.mobilesecurity.protection.android:id/tvAllowAccess"), 30
-        );
-
-        waitAndClick(
-                AppiumBy.id("com.android.permissioncontroller:id/permission_allow_button"), 30
-        );
+//        waitAndClick(
+//                AppiumBy.id("antivirus.viruscleaner.mobilesecurity.protection.android:id/tvAllowAccess"), 30
+//        );
+//
+//        waitAndClick(
+//                AppiumBy.id("com.android.permissioncontroller:id/permission_allow_button"), 30
+//        );
     }
 
     // RESET APP
@@ -56,11 +62,12 @@ public class PartialScanPage extends AntivirusPro {
 
 
 
-
+        checkNotificationAccess();
 
         waitAndClick(
                 AppiumBy.id("antivirus.viruscleaner.mobilesecurity.protection.android:id/tvScanNow"), 20
         );
+
         checkPermissionBeforeScan(); // ← Add this line
 
 

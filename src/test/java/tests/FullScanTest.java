@@ -7,6 +7,7 @@ package tests;
 import org.testng.annotations.*;
 import pages.FullScanPage;
 
+
 public class FullScanTest {
 
     FullScanPage page;
@@ -17,7 +18,7 @@ public class FullScanTest {
         page.handlePopupsIfAny();
     }
 
-    @Test(
+    @Test(priority = 2,
             dependsOnMethods = {
                     "tests.PartialScanTest.partialScanFirstTimeTest"
             }
@@ -36,6 +37,22 @@ public class FullScanTest {
         page.continueIfShown();
 
         System.out.println("Full Scan with verification completed");
+    }
+
+
+    @Test(priority = 1,dependsOnMethods = {
+            "tests.PartialScanTest.partialScanFirstTimeTest"
+    })
+    public void deleteThreatOneByOneTest() {
+
+
+        page.startScan();
+        page.openFilesTab();
+        page.openThreatList();
+        page.deleteThreatsOneByOne();
+        page.continueIfShown();
+
+        System.out.println("Starting Delete Threat One");
     }
 
     @AfterMethod

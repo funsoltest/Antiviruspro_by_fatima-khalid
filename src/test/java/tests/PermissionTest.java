@@ -14,6 +14,17 @@ public class PermissionTest extends AntivirusPro {
     public void setup() {
         permissionPage = new PermissionPage();
     }
+    @Test(description = "Notifcation Permisiion")
+    public void notificationPermissionTest() {
+        if(permissionPage.isAllowAccessVisible()){
+            permissionPage.grantNotificationPermission();
+        } else{
+            System.out.println("[PermissionPage] Notification Permission is disabled");
+
+        }
+
+        Assert.assertFalse(permissionPage.isAllowAccessVisible(), "Notification Access dialog should not be visible after granting permission");
+    }
 
 
 
@@ -26,7 +37,11 @@ public class PermissionTest extends AntivirusPro {
             System.out.println("[Test] All Files Access already granted or not required.");
         }
 
-        // ✅ Verification
+        //Verification Assert is a check inside your automated test.
+        //It verifies that the app behaved the way you expected.
+        //If the check fails, the test fails automatically.
+        //Without asserts, your test just clicks buttons but doesn’t actually confirm anything.
+
         Assert.assertFalse(permissionPage.isAllowAccessVisible(), "All Files Access dialog should not be visible after granting permission");
     }
 
